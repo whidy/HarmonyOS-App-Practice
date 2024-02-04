@@ -1,0 +1,16 @@
+{
+  "float": [
+    {
+      "name": "button_width",
+      "value": "200vp"
+    },
+    {
+      "name": "button_height",
+      "value": "40vp"
+    },
+    {
+      "name": "login_fontSize",
+      "value": "18fp"
+    }
+  ]
+}
