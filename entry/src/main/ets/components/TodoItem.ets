@@ -5,6 +5,7 @@ export default struct TodoItem {
   private index?: number;
   @State isChecked: boolean = false;
   @Prop isEditMode: boolean
+  @Link todoListData: Array<string>
 
   build() {
     Column() {
@@ -22,6 +23,8 @@ export default struct TodoItem {
         if (this.isEditMode) {
           Row() {
             Image($r('app.media.delete')).width(30).height(30).onClick(item => {
+              // todo
+              this.todoListData.splice(this.index, 1)
             })
           }.backgroundColor(Color.Red)
         }
