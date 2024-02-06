@@ -1,4 +1,6 @@
 import router from '@ohos.router'
+import { VideoPlayer } from '../components/VideoPlayer';
+
 @Entry
 @Component
 struct Index {
@@ -58,6 +60,7 @@ struct Index {
         .height('100%')
       }
       .width('100%')
+      VideoPlayer()
     }
     .height('100%')
   }

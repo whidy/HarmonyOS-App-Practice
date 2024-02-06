@@ -11,6 +11,14 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "VideoSlider_desc",
+      "value": "description"
+    },
+    {
+      "name": "VideoSlider_label",
+      "value": "label"
     }
   ]
 }

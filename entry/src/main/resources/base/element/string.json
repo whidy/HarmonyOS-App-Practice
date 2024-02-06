@@ -15,6 +15,14 @@
     {
       "name": "login_text",
       "value": "登录"
+    },
+    {
+      "name": "VideoSlider_desc",
+      "value": "description"
+    },
+    {
+      "name": "VideoSlider_label",
+      "value": "label"
     }
   ]
 }
