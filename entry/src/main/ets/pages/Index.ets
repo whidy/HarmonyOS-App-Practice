@@ -1,16 +1,31 @@
 import router from '@ohos.router'
 import { VideoPlayer } from '../components/VideoPlayer';
+import {
+  MARGIN_FONT_SIZE,
+  COMMON_NUM_FONT_WEIGHT,
+  ALL_PERCENT,
+  STACK_STYLE
+} from '../common/constants/CommonConstants';
 
 @Entry
 @Component
 struct Index {
   private controller: TabsController = new TabsController()
+  private source: string = '';
   @State message: string = 'Hello World'
   @State loading: boolean = true
 
+  private startIconResource: Resource = $r('app.media.play');
+  @Provide isPlay: boolean = false;
+  videoController: VideoController = new VideoController();
+  @Provide isOpacity: boolean = false;
+  @Provide isLoading: boolean = false;
+  @Provide progressVal: number = 0;
+  @Provide flag: boolean = false;
+
   build() {
-    Row() {
-      Column() {
+    Column() {
+      Row() {
         Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
           TabContent() {
             Column() {
@@ -59,8 +74,42 @@ struct Index {
         .width('100%')
         .height('100%')
       }
+      .height('50%')
       .width('100%')
-      VideoPlayer()
+      Row() {
+        Stack() {
+          if (!this.isPlay && !this.isLoading) {
+            Image(this.startIconResource)
+              .width(MARGIN_FONT_SIZE.FIFTH_MARGIN)
+              .height(MARGIN_FONT_SIZE.FIFTH_MARGIN)
+              .zIndex(STACK_STYLE.IMAGE_Z_INDEX)
+          }
+          if (this.isLoading) {
+            Progress({
+              value: STACK_STYLE.PROGRESS_VALUE,
+              total: STACK_STYLE.PROGRESS_TOTAL,
+              type: ProgressType.ScaleRing
+            })
+              .color(Color.Grey)
+              .value(this.progressVal)
+              .width(STACK_STYLE.PROGRESS_WIDTH)
+              .style({
+                strokeWidth: STACK_STYLE.PROGRESS_STROKE_WIDTH,
+                scaleCount: STACK_STYLE.PROGRESS_SCALE_COUNT,
+                scaleWidth: STACK_STYLE.PROGRESS_SCALE_WIDTH
+              })
+              .zIndex(STACK_STYLE.PROGRESS_Z_INDEX)
+          }
+          VideoPlayer({
+            source: this.source,
+            controller: this.videoController
+          })
+            .zIndex(0)
+        }
+
+      }
+      .width('100%')
+      .height('50%')
     }
     .height('100%')
   }

@@ -15,9 +15,9 @@ import {
 
 @Component
 export struct VideoPlayer {
-  private src: string = ''
+  private source: string | Resource = '';
   private previewUris: Resource = $r('app.media.SampleVideo');
-  private controller: VideoController;
+  private controller: VideoController = new VideoController();
   @Provide durationTime: number = 0
   @Provide durationStringTime: string = '00:00'
   @Provide currentTime: number = 0
@@ -28,7 +28,7 @@ export struct VideoPlayer {
 
   build() {
     Row() {
-      Video({ src: this.src, previewUri: this.previewUris })
+      Video({ src: this.source, previewUri: this.previewUris, controller: this.controller })
         .onPrepared((e) => {
           this.prepared.call(this, e)
         })
